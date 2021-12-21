@@ -7,6 +7,8 @@ services:
       - ./data:/data
     ports:
       - "6379:6379"
+    networks:
+      - default
  
   redis-slave:
     image: redis:6-alpine
@@ -15,6 +17,8 @@ services:
       - redis-master
     volumes:
       - ./data:/data
+    networks:
+      - default
      
   # Instance 1
   redis-sentinel:
@@ -22,6 +26,8 @@ services:
       context: ./redis-sentinel
     links:
       - redis-master
+    networks:
+      - default
  
   # Instance 2
   redis-sentinel2:
@@ -29,6 +35,8 @@ services:
       context: ./redis-sentinel
     links:
       - redis-master
+    networks:
+      - default
  
   # Instance 3
   redis-sentinel3:
@@ -36,3 +44,10 @@ services:
       context: ./redis-sentinel
     links:
       - redis-master
+    networks:
+      - default
+
+  networks:
+    default:
+      external:
+        name: redis_network  
