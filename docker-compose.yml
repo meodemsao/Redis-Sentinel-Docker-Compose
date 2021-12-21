@@ -50,4 +50,4 @@ services:
   networks:
     default:
       external:
-        name: redis_network  
+        name: redis_network
