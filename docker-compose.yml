@@ -10,7 +10,7 @@ services:
   redis-master:
     image: redis:6-alpine
     volumes:
-      - "./.data:/data"
+      - ./data:/data
     ports:
       - "6379:6379"
  
@@ -20,7 +20,7 @@ services:
     links:
       - redis-master
     volumes:
-      - "./.data:/data"
+      - "./data:/data
      
   # Instance 1
   redis-sentinel:
